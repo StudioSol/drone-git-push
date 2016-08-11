@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/user"
 	"path/filepath"
+	"strings"
 )
 
 const netrcFile = `
@@ -49,7 +50,7 @@ func WriteKey(privateKey string) error {
 
 	return ioutil.WriteFile(
 		privpath,
-		[]byte(privateKey),
+		[]byte(strings.Replace(privateKey, "\\n", "\n", -1)),
 		0600)
 }
 
